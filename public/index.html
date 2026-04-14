@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AXON | The Future of Velocity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&amp;family=Manrope:wght@300;400;600&amp;family=Space+Grotesk:wght@300;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed": "#07200a",
+                        "secondary-container": "#414b49",
+                        "tertiary-fixed-dim": "#ffb4a2",
+                        "on-secondary-fixed-variant": "#3f4947",
+                        "on-error": "#690005",
+                        "on-surface": "#e2e3df",
+                        "inverse-surface": "#e2e3df",
+                        "outline-variant": "#434841",
+                        "tertiary": "#ffb4a2",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#203920",
+                        "inverse-primary": "#4a6549",
+                        "inverse-on-surface": "#2f312f",
+                        "primary-fixed": "#ccebc7",
+                        "on-tertiary-fixed-variant": "#891d00",
+                        "secondary": "#bec9c6",
+                        "on-background": "#e2e3df",
+                        "primary-container": "#86a383",
+                        "tertiary-fixed": "#ffdad2",
+                        "surface-tint": "#b0cfac",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#dae5e2",
+                        "surface-dim": "#121412",
+                        "on-primary-fixed-variant": "#334d33",
+                        "background": "#121412",
+                        "primary-fixed-dim": "#b0cfac",
+                        "surface": "#121412",
+                        "on-tertiary-container": "#661300",
+                        "surface-container-low": "#1a1c1a",
+                        "on-surface-variant": "#c3c8be",
+                        "on-tertiary": "#611200",
+                        "secondary": "#bec9c6",
+                        "tertiary-container": "#ff6e49",
+                        "surface-container": "#1e201e",
+                        "on-primary": "#1d361e",
+                        "surface-bright": "#383a37",
+                        "surface-container-high": "#282a28",
+                        "surface-container-highest": "#333533",
+                        "outline": "#8d928a",
+                        "surface-variant": "#333533",
+                        "on-secondary": "#293230",
+                        "surface-container-lowest": "#0d0f0d",
+                        "on-secondary-fixed": "#141d1c",
+                        "on-tertiary-fixed": "#3c0700",
+                        "primary": "#b0cfac",
+                        "on-secondary-container": "#b0bbb8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Orbitron", "sans-serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Space Grotesk", "sans-serif"]
+                    },
+                    "screens": {
+                        "xs": "480px"
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        /* Icon animations */
+        .bx {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(255, 110, 73, 0.3);
+        }
+        .mechanical-gradient {
+            background: linear-gradient(135deg, #b0cfac 0%, #86a383 100%);
+        }
+        /* Glass stat pills (mobile specs row) */
+        .glass-stat-pill {
+            padding: 10px 18px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            transition: all 0.25s ease;
+            min-width: 72px;
+        }
+        .glass-stat-pill:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        .glass-stat-label {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #b0cfac;
+            line-height: 1;
+        }
+        .glass-stat-value {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        /* Glass info button (mobile) */
+        .glass-btn {
+            padding: 14px 32px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 12px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-btn::before {
+            display: none;
+        }
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        .glass-btn:active {
+            transform: translateY(0px);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        .glass-btn-icon {
+            font-size: 1.3rem;
+            color: #b0cfac;
+            flex-shrink: 0;
+        }
+        .glass-btn-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+        .glass-btn-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #b0cfac;
+            line-height: 1;
+        }
+        .glass-btn-subtitle {
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.6rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+        /* Tooltip on glass btn */
+        .glass-tooltip {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 50%;
+            transform: translateX(-50%) scale(0.95);
+            width: 240px;
+            background: rgba(18,20,18,0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(176,207,172,0.15);
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.6;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            z-index: 10;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .glass-tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: rgba(176,207,172,0.15);
+        }
+        .glass-btn:hover .glass-tooltip,
+        .glass-btn:focus .glass-tooltip {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+        /* Scan line on tooltip */
+        .glass-tooltip::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(176,207,172,0.4), transparent);
+            border-radius: 10px 10px 0 0;
+        }
+        /* Hide paragraph on mobile, show glass btn */
+        .hero-desc-text { display: none; }
+        .hero-desc-icon { display: flex; justify-content: center; }
+        @media (min-width: 768px) {
+            .hero-desc-text { display: block; }
+            .hero-desc-icon { display: none; }
+        }
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Button hover effects */
+        button {
+            position: relative;
+            overflow: hidden;
+        }
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+            z-index: -1;
+        }
+        button:hover::before {
+            left: 100%;
+        }
+        /* Feature card animations */
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        /* Hide hero until fully loaded */
+        #site-content {
+            opacity: 0;
+            visibility: hidden;
+        }
+        #site-content.revealed {
+            visibility: visible;
+        }
+
+        /* Loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            display: none;
+            background: #121412;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+        #loader.hide {
+            pointer-events: none;
+        }
+        .loader-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            color: #b0cfac;
+            line-height: 1;
+        }
+        .loader-logo span {
+            color: #ff6e49;
+            display: inline-block;
+            animation: glowPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow:
+                    0 0 8px rgba(255,110,73,0.6),
+                    0 0 20px rgba(255,110,73,0.4),
+                    0 0 40px rgba(255,110,73,0.2);
+                color: #ff6e49;
+            }
+            50% {
+                text-shadow:
+                    0 0 20px rgba(255,110,73,1),
+                    0 0 50px rgba(255,110,73,0.8),
+                    0 0 90px rgba(255,110,73,0.5),
+                    0 0 140px rgba(255,110,73,0.2);
+                color: #ff8c6e;
+            }
+        }
+        .loader-tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.35em;
+            color: rgba(176,207,172,0.4);
+            text-transform: uppercase;
+        }
+        .rev-btn {
+            position: relative;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #121412;
+            background: #b0cfac;
+            border: none;
+            padding: 18px 48px;
+            cursor: pointer;
+            overflow: hidden;
+            clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+            transition: background 0.3s;
+        }
+        .rev-btn:hover {
+            background: #ff6e49;
+            color: #fff;
+        }
+        .rev-btn .btn-icon {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 1.1rem;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+        .rev-btn:hover .btn-icon {
+            transform: rotate(20deg) scale(1.3);
+        }
+        /* Engine rev progress bar */
+        .rev-track {
+            width: 220px;
+            height: 2px;
+            background: rgba(176,207,172,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        .rev-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #b0cfac, #ff6e49);
+            transition: width 0.05s linear;
+        }
+        /* Speedometer transition screen */
+        #speedometer-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 100000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #speedo-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* Shooting stars canvas */
+        #stars-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        /* Brake button */
+        #brake-btn-wrap {
+            position: absolute;
+            bottom: 48px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            user-select: none;
+        }
+        #brake-btn {
+            position: relative;
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            overflow: visible;
+        }
+        /* Outer hexagonal badge */
+        .brake-badge {
+            position: relative;
+            width: 110px;
+            height: 110px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* SVG arc ring behind the badge */
+        .brake-badge svg.brake-ring {
+            position: absolute;
+            inset: -8px;
+            width: calc(100% + 16px);
+            height: calc(100% + 16px);
+            transform: rotate(-90deg);
+            pointer-events: none;
+        }
+        .brake-ring-track {
+            fill: none;
+            stroke: rgba(255,110,73,0.12);
+            stroke-width: 1.5;
+        }
+        .brake-ring-fill {
+            fill: none;
+            stroke: #ff6e49;
+            stroke-width: 1.5;
+            stroke-linecap: round;
+            stroke-dasharray: 320;
+            stroke-dashoffset: 320;
+            filter: drop-shadow(0 0 4px #ff6e49);
+            transition: stroke-dashoffset 0s linear;
+        }
+        /* Inner disc */
+        .brake-disc {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(20,14,10,0.95), rgba(10,8,6,0.98));
+            border: 1px solid rgba(255,110,73,0.25);
+            box-shadow:
+                0 0 0 1px rgba(255,110,73,0.08),
+                0 0 40px rgba(255,110,73,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.04),
+                inset 0 0 30px rgba(255,110,73,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            position: relative;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+        /* Glare sheen */
+        .brake-disc::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 100%);
+            border-radius: 50% 50% 0 0;
+            pointer-events: none;
+        }
+        /* B letter mark */
+        .brake-letter {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: #ff6e49;
+            line-height: 1;
+            letter-spacing: -0.02em;
+            text-shadow: 0 0 16px rgba(255,110,73,0.5);
+            transition: text-shadow 0.3s, transform 0.2s;
+        }
+        .brake-sublabel {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.38rem;
+            letter-spacing: 0.32em;
+            color: rgba(255,110,73,0.45);
+            text-transform: uppercase;
+        }
+        /* Tick marks around disc */
+        .brake-ticks {
+            position: absolute;
+            inset: -22px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        /* Hover state */
+        #brake-btn:hover .brake-disc {
+            border-color: rgba(255,110,73,0.6);
+            box-shadow:
+                0 0 0 1px rgba(255,110,73,0.15),
+                0 0 60px rgba(255,110,73,0.25),
+                inset 0 1px 0 rgba(255,255,255,0.06),
+                inset 0 0 40px rgba(255,110,73,0.08);
+        }
+        #brake-btn:hover .brake-letter {
+            text-shadow: 0 0 30px rgba(255,110,73,0.9);
+        }
+        /* Active / braking state */
+        #brake-btn.braking .brake-disc {
+            border-color: rgba(255,110,73,0.9);
+            box-shadow:
+                0 0 0 1px rgba(255,110,73,0.4),
+                0 0 80px rgba(255,110,73,0.5),
+                inset 0 1px 0 rgba(255,255,255,0.08),
+                inset 0 0 50px rgba(255,110,73,0.2);
+            transform: scale(0.96);
+        }
+        #brake-btn.braking .brake-letter {
+            text-shadow: 0 0 40px rgba(255,110,73,1), 0 0 6px #fff;
+            transform: scale(0.94);
+        }
+        #brake-btn::before {
+            display: none;
+        }
+        #brake-btn {
+            overflow: visible !important;
+        }
+        /* Caption below */
+        .brake-caption {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .brake-caption-line {
+            width: 28px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,110,73,0.4));
+        }
+        .brake-caption-line.right {
+            background: linear-gradient(270deg, transparent, rgba(255,110,73,0.4));
+        }
+        .brake-caption-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.5rem;
+            letter-spacing: 0.38em;
+            color: rgba(255,110,73,0.55);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        #brake-btn.braking .brake-caption-text {
+            color: #ff6e49;
+            text-shadow: 0 0 10px rgba(255,110,73,0.6);
+        }
+        /* Slow-mo vignette */
+        #speedo-vignette {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(255,50,0,0.18) 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s;
+        }
+        #speedometer-screen.braking #speedo-vignette {
+            opacity: 1;
+        }
+        /* Slow-mo HUD label */
+        #slowmo-label {
+            position: absolute;
+            top: 32px;
+            right: 40px;
+            z-index: 3;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.6rem;
+            letter-spacing: 0.3em;
+            color: #ff6e49;
+            text-transform: uppercase;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        #speedometer-screen.braking #slowmo-label {
+            opacity: 1;
+        }
+        /* Scan lines overlay */
+        #loader::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 3px,
+                rgba(0,0,0,0.08) 3px,
+                rgba(0,0,0,0.08) 4px
+            );
+            pointer-events: none;
+        }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary selection:text-on-primary">
+
+<!-- Speedometer Transition Screen -->
+<div id="speedometer-screen">
+    <video id="speedo-video" src="Speedometer.mp4" autoplay muted playsinline></video>
+    <canvas id="stars-canvas"></canvas>
+    <div id="speedo-vignette"></div>
+    <div id="slowmo-label">// SLOW&nbsp;&nbsp;MOTION</div>
+    <div id="brake-btn-wrap">
+        <button id="brake-btn" onmousedown="startBrake()" onmouseup="releaseBrake()" ontouchstart="startBrake()" ontouchend="releaseBrake()">
+            <div class="brake-badge">
+                <!-- SVG arc ring -->
+                <svg class="brake-ring" viewBox="0 0 126 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="brake-ring-track" cx="63" cy="63" r="51"/>
+                    <circle class="brake-ring-fill" id="brakeRingFill" cx="63" cy="63" r="51"/>
+                </svg>
+                <div class="brake-disc">
+                    <span class="brake-letter">B</span>
+                    <span class="brake-sublabel">BRAKE</span>
+                </div>
+            </div>
+            <div class="brake-caption">
+                <span class="brake-caption-line"></span>
+                <span class="brake-caption-text">Hold to Engage</span>
+                <span class="brake-caption-line right"></span>
+            </div>
+        </button>
+    </div>
+</div>
+
+<!-- Loader -->
+<div id="loader">
+    <div style="text-align:center;">
+        <div class="loader-tagline" style="margin-bottom:16px;">X-1 SERIES // SYSTEM BOOT</div>
+        <div class="loader-logo">AX<span>O</span>N</div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:20px;">
+        <button class="rev-btn" id="revBtn" onclick="startRev()">
+            <i class="bx bxs-bolt btn-icon"></i>Reev to Load AXON
+        </button>
+        <div class="rev-track"><div class="rev-fill" id="revFill"></div></div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:0.6rem;letter-spacing:0.3em;color:rgba(176,207,172,0.3);text-transform:uppercase;" id="revLabel">HOLD TO IGNITE</div>
+    </div>
+</div>
+
+<div id="site-content">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-transparent flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 sm:py-4 max-w-full">
+<div class="flex items-center gap-3 sm:gap-6">
+<div class="font-['Orbitron'] text-xl sm:text-2xl font-black tracking-tighter text-[#b0cfac]">AXON</div>
+<div class="hidden md:flex gap-6 lg:gap-8 items-center bg-white/10 backdrop-blur-md px-5 lg:px-8 py-2.5 lg:py-3 rounded-[50px] border border-white/10">
+<a class="font-['Space_Grotesk'] tracking-wider uppercase text-xs text-white/70 hover:text-white transition-colors" href="#">HELMET</a>
+<a class="font-['Space_Grotesk'] tracking-wider uppercase text-xs text-white/70 hover:text-white transition-colors" href="#">TECH</a>
+<a class="font-['Space_Grotesk'] tracking-wider uppercase text-xs text-white/70 hover:text-white transition-colors" href="#">SPECS</a>
+<a class="font-['Space_Grotesk'] tracking-wider uppercase text-xs text-white/70 hover:text-white transition-colors" href="#">ORDER</a>
+</div>
+</div>
+<div class="flex items-center gap-3 sm:gap-6">
+<div class="hidden sm:flex gap-3 sm:gap-4">
+<i class="bx bx-user-circle text-white/70 cursor-pointer hover:text-primary transition-colors text-xl sm:text-2xl" data-icon="account_circle"></i>
+<i class="bx bx-shopping-bag text-white/70 cursor-pointer hover:text-primary transition-colors text-xl sm:text-2xl" data-icon="shopping_cart"></i>
+</div>
+<!-- Mobile menu toggle -->
+<button id="mobile-menu-btn" class="md:hidden text-white/70 hover:text-white transition-colors" onclick="toggleMobileMenu()">
+<i class="bx bx-menu text-2xl"></i>
+</button>
+<button class="bg-[#b0cfac] text-[#1d361e] font-['Space_Grotesk'] text-[9px] sm:text-[10px] font-bold tracking-[0.2em] px-4 sm:px-6 py-1.5 sm:py-2 transition-transform active:scale-95">PRE-ORDER</button>
+</div>
+</nav>
+<!-- Mobile nav menu -->
+<div id="mobile-menu" class="fixed top-0 left-0 w-full h-full z-40 bg-[#121412]/95 backdrop-blur-xl flex-col items-center justify-center gap-8 hidden">
+<button class="absolute top-5 right-6 text-white/70 hover:text-white" onclick="toggleMobileMenu()">
+<i class="bx bx-x text-3xl"></i>
+</button>
+<div class="font-['Orbitron'] text-3xl font-black tracking-tighter text-[#b0cfac] mb-4">AXON</div>
+<a class="font-['Space_Grotesk'] tracking-widest uppercase text-sm text-white/70 hover:text-white transition-colors" href="#" onclick="toggleMobileMenu()">HELMET</a>
+<a class="font-['Space_Grotesk'] tracking-widest uppercase text-sm text-white/70 hover:text-white transition-colors" href="#" onclick="toggleMobileMenu()">TECH</a>
+<a class="font-['Space_Grotesk'] tracking-widest uppercase text-sm text-white/70 hover:text-white transition-colors" href="#" onclick="toggleMobileMenu()">SPECS</a>
+<a class="font-['Space_Grotesk'] tracking-widest uppercase text-sm text-white/70 hover:text-white transition-colors" href="#" onclick="toggleMobileMenu()">ORDER</a>
+<div class="flex gap-5 mt-2">
+<i class="bx bx-user-circle text-white/70 cursor-pointer hover:text-primary transition-colors text-2xl"></i>
+<i class="bx bx-shopping-bag text-white/70 cursor-pointer hover:text-primary transition-colors text-2xl"></i>
+</div>
+</div>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center pt-16 sm:pt-20 lg:items-start">
+<!-- Background Video with Tonal Overlay -->
+<div class="absolute inset-0 z-0">
+<video class="w-full h-full object-cover" autoplay muted loop playsinline>
+<source src="Helmet.mp4" type="video/mp4"/>
+</video>
+<div class="absolute inset-0 bg-gradient-to-r from-background via-background/70 to-transparent sm:via-background/60"></div>
+</div>
+<div class="relative z-10 w-full px-5 sm:px-8 lg:px-16 flex flex-col items-center lg:grid lg:grid-cols-2 lg:gap-12 lg:container lg:mx-auto py-10 sm:py-16 lg:py-0">
+<div class="w-full text-center flex flex-col items-center lg:items-start lg:max-w-2xl">
+<!-- HUD Accent Label -->
+<div class="flex items-center justify-center gap-3 mb-5 sm:mb-6">
+<span class="w-8 sm:w-12 h-[1px] bg-tertiary-container shadow-[0_0_8px_#ff6e49]"></span>
+<span class="font-label text-tertiary text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.3em] font-bold">SYSTEM ACTIVE: X-1 SERIES</span>
+</div>
+<h1 class="font-headline text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-on-surface leading-none tracking-tighter mb-4 sm:mb-6 uppercase">
+                        THE FUTURE OF <span class="text-primary block">VELOCITY</span>
+</h1>
+<!-- Desktop: descriptive paragraph -->
+                    <p class="hero-desc-text font-body text-base sm:text-lg text-on-surface-variant max-w-md mb-8 sm:mb-10 leading-relaxed border-l-2 border-primary/20 pl-4 sm:pl-6 mx-auto text-left">
+                        Experience neural-link safety and tactical awareness with the Axon X-1. The world's first helmet designed for cognitive synchronization.
+                    </p>
+                    <!-- Mobile: glass comment/info icon button -->
+                    <div class="hero-desc-icon mb-8">
+                        <button class="glass-btn" tabindex="0" aria-label="About AXON X-1">
+                            <div class="glass-tooltip">
+                                Experience neural-link safety and tactical awareness with the Axon X-1. The world's first helmet designed for cognitive synchronization.
+                            </div>
+                            <i class="bx bx-chat glass-btn-icon"></i>
+                            <div class="glass-btn-text">
+                                <span class="glass-btn-title">AXON&nbsp;X-1</span>
+                                <span class="glass-btn-subtitle">Tap to reveal spec</span>
+                            </div>
+                        </button>
+                    </div>
+<div class="flex flex-row flex-nowrap gap-3 justify-center items-center hero-cta">
+<button class="mechanical-gradient text-on-primary-fixed font-label font-bold tracking-wider px-5 py-3 glow-orange uppercase active:scale-95 transition-all text-[10px] whitespace-nowrap">
+                            PRE-ORDER NOW
+                        </button>
+<button class="border border-primary/20 hover:bg-primary/10 text-primary font-label font-bold tracking-wider px-5 py-3 uppercase transition-all text-[10px] group flex items-center gap-1.5 whitespace-nowrap">
+                            EXPLORE TECH
+                            <i class="bx bx-right-arrow-alt group-hover:translate-x-1 transition-transform" data-icon="arrow_forward"></i>
+</button>
+</div>
+</div>
+<!-- Technical Specs Offset Box -->
+<div class="hidden lg:flex flex-col justify-end items-end">
+<div class="bg-surface-container-low/40 backdrop-blur-md p-6 lg:p-8 w-56 lg:w-64 border-r-4 border-primary">
+<div class="mb-5 lg:mb-6">
+<span class="font-label text-[10px] text-primary/60 block mb-1">LATENCY</span>
+<span class="font-headline text-xl lg:text-2xl font-bold text-on-surface">0.02ms</span>
+</div>
+<div class="mb-5 lg:mb-6">
+<span class="font-label text-[10px] text-primary/60 block mb-1">FOV</span>
+<span class="font-headline text-xl lg:text-2xl font-bold text-on-surface">210°</span>
+</div>
+<div>
+<span class="font-label text-[10px] text-primary/60 block mb-1">UPTIME</span>
+<span class="font-headline text-xl lg:text-2xl font-bold text-on-surface">18HRS</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Specs row for mobile/tablet -->
+<div class="lg:hidden relative z-10 container mx-auto px-5 sm:px-8 pb-16 sm:pb-20">
+<div class="flex gap-3 sm:gap-4 mt-8 sm:mt-10 border-t border-primary/10 pt-6 justify-start flex-wrap">
+    <div class="glass-stat-pill">
+        <span class="glass-stat-label">LATENCY</span>
+        <span class="glass-stat-value">0.02ms</span>
+    </div>
+    <div class="glass-stat-pill">
+        <span class="glass-stat-label">FOV</span>
+        <span class="glass-stat-value">210°</span>
+    </div>
+    <div class="glass-stat-pill">
+        <span class="glass-stat-label">UPTIME</span>
+        <span class="glass-stat-value">18HRS</span>
+    </div>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-6 sm:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+<span class="font-label text-[10px] tracking-[0.4em] text-white/30 uppercase">DRAG TO SCAN</span>
+<div class="w-[1px] h-8 sm:h-12 bg-gradient-to-b from-primary to-transparent"></div>
+</div>
+</section>
+</main>
+</div><!-- /#site-content -->
+
+<script>
+    // ── Mobile Menu ───────────────────────────────────────────
+    function toggleMobileMenu() {
+        const menu = document.getElementById('mobile-menu');
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+    }
+
+    // ── Glass info btn: tap to show/hide tooltip on touch devices ──
+    document.addEventListener('DOMContentLoaded', () => {
+        const glassBtn = document.querySelector('.hero-desc-icon .glass-btn');
+        if (glassBtn) {
+            glassBtn.addEventListener('click', () => {
+                const tooltip = glassBtn.querySelector('.glass-tooltip');
+                if (!tooltip) return;
+                const active = tooltip.style.opacity === '1';
+                tooltip.style.opacity = active ? '0' : '1';
+                tooltip.style.transform = active
+                    ? 'translateX(-50%) scale(0.95)'
+                    : 'translateX(-50%) scale(1)';
+                const sub = glassBtn.querySelector('.glass-btn-subtitle');
+                if (sub) sub.textContent = active ? 'Tap to reveal spec' : 'Tap to close';
+            });
+        }
+    });
+
+    // ── Shooting Stars ────────────────────────────────────────
+    const canvas = document.getElementById('stars-canvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    let isBraking = false;
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function createStar() {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = isBraking ? 1 + Math.random() * 2 : 6 + Math.random() * 10;
+        return {
+            x: canvas.width / 2 + (Math.random() - 0.5) * canvas.width * 0.3,
+            y: canvas.height / 2 + (Math.random() - 0.5) * canvas.height * 0.3,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            length: isBraking ? 4 + Math.random() * 8 : 12 + Math.random() * 30,
+            alpha: 0.6 + Math.random() * 0.4,
+            color: Math.random() > 0.7 ? '#ff6e49' : '#b0cfac',
+            life: 1
+        };
+    }
+
+    for (let i = 0; i < 60; i++) stars.push(createStar());
+
+    function animateStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const targetCount = isBraking ? 20 : 60;
+
+        while (stars.length < targetCount) stars.push(createStar());
+
+        stars.forEach((s, i) => {
+            s.x += s.vx;
+            s.y += s.vy;
+            s.life -= isBraking ? 0.008 : 0.018;
+
+            ctx.save();
+            ctx.globalAlpha = s.life * s.alpha;
+            ctx.strokeStyle = s.color;
+            ctx.lineWidth = isBraking ? 1 : 1.5;
+            ctx.shadowBlur = isBraking ? 4 : 10;
+            ctx.shadowColor = s.color;
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(s.x - s.vx * (s.length / Math.hypot(s.vx, s.vy)), s.y - s.vy * (s.length / Math.hypot(s.vx, s.vy)));
+            ctx.stroke();
+            ctx.restore();
+
+            if (s.life <= 0 || s.x < -100 || s.x > canvas.width + 100 || s.y < -100 || s.y > canvas.height + 100) {
+                stars[i] = createStar();
+            }
+        });
+
+        requestAnimationFrame(animateStars);
+    }
+    animateStars();
+
+    // ── Brake Button ──────────────────────────────────────────
+    const speedoVideo = document.getElementById('speedo-video');
+    const speedoScreenEl = document.getElementById('speedometer-screen');
+    const brakeBtn = document.getElementById('brake-btn');
+    const brakeRingFill = document.getElementById('brakeRingFill');
+    let brakeHoldInterval = null;
+    let brakeProgress = 0; // 0–320
+
+    function startBrake() {
+        isBraking = true;
+        brakeBtn.classList.add('braking');
+        speedoScreenEl.classList.add('braking');
+        speedoVideo.playbackRate = 0.15;
+        gsap.to(brakeBtn.querySelector('.brake-disc'), { duration: 0.3, scale: 0.93, ease: 'power2.out' });
+
+        // Fill arc while held
+        brakeHoldInterval = setInterval(() => {
+            brakeProgress = Math.min(brakeProgress + 6, 320);
+            brakeRingFill.style.strokeDashoffset = 320 - brakeProgress;
+        }, 20);
+    }
+
+    function releaseBrake() {
+        isBraking = false;
+        brakeBtn.classList.remove('braking');
+        speedoScreenEl.classList.remove('braking');
+        speedoVideo.playbackRate = 1;
+        gsap.to(brakeBtn.querySelector('.brake-disc'), { duration: 0.5, scale: 1, ease: 'back.out' });
+
+        clearInterval(brakeHoldInterval);
+        // Drain arc
+        const drain = setInterval(() => {
+            brakeProgress = Math.max(brakeProgress - 8, 0);
+            brakeRingFill.style.strokeDashoffset = 320 - brakeProgress;
+            if (brakeProgress === 0) clearInterval(drain);
+        }, 20);
+    }
+
+    // ── Speedometer → Loader on page load ────────────────────
+    window.addEventListener('DOMContentLoaded', () => {
+        const speedoVideo = document.getElementById('speedo-video');
+        const speedoScreen = document.getElementById('speedometer-screen');
+        const loader = document.getElementById('loader');
+
+        function showLoader() {
+            if (speedoScreen.dataset.done) return;
+            speedoScreen.dataset.done = '1';
+            // Show loader instantly behind the speedometer — no gaps
+            loader.style.display = 'flex';
+            gsap.set(loader, { opacity: 0 });
+            // Instantly remove speedometer, then fade loader in
+            speedoScreen.style.display = 'none';
+            gsap.to(loader, { duration: 0.6, opacity: 1, ease: 'power2.out' });
+        }
+
+        speedoVideo.addEventListener('ended', showLoader, { once: true });
+        // Fallback in case video can't play
+        setTimeout(showLoader, 10000);
+    });
+
+    // ── Loader Logic ──────────────────────────────────────────
+    let revInterval = null;
+    let revProgress = 0;
+    let revComplete = false;
+
+    function startRev() {
+        if (revComplete) return;
+        const btn = document.getElementById('revBtn');
+        const fill = document.getElementById('revFill');
+        const label = document.getElementById('revLabel');
+
+        btn.textContent = '';
+        btn.innerHTML = '<i class="bx bxs-bolt btn-icon" style="font-size:1.1rem;margin-right:10px;vertical-align:middle;"></i>REVVING...';
+        label.textContent = 'IGNITION SEQUENCE ACTIVE';
+        label.style.color = 'rgba(255,110,73,0.7)';
+
+        // Shake the button
+        gsap.to(btn, { duration: 0.08, x: 3, repeat: -1, yoyo: true, ease: 'none' });
+
+        // Pulse the logo
+        gsap.to('.loader-logo', { duration: 0.4, scale: 1.04, repeat: -1, yoyo: true, ease: 'sine.inOut' });
+
+        revInterval = setInterval(() => {
+            revProgress = Math.min(revProgress + 2, 100);
+            fill.style.width = revProgress + '%';
+
+            if (revProgress >= 100) {
+                clearInterval(revInterval);
+                revComplete = true;
+                gsap.killTweensOf(btn);
+                gsap.killTweensOf('.loader-logo');
+                gsap.set(btn, { x: 0 });
+                label.textContent = 'SYSTEM ARMED';
+                label.style.color = '#b0cfac';
+                btn.innerHTML = '<i class="bx bxs-check-circle btn-icon" style="font-size:1.1rem;margin-right:10px;vertical-align:middle;"></i>AXON ONLINE';
+
+                // Exit loader → reveal hero
+                setTimeout(() => {
+                    gsap.to('#loader', {
+                        duration: 1,
+                        opacity: 0,
+                        ease: 'power3.inOut',
+                        onComplete: () => {
+                            document.getElementById('loader').style.display = 'none';
+                            const content = document.getElementById('site-content');
+                            content.classList.add('revealed');
+                            gsap.fromTo(content, { opacity: 0 }, { duration: 0.8, opacity: 1, ease: 'power2.out' });
+                        }
+                    });
+                }, 500);
+            }
+        }, 30);
+    }
+
+    // Register ScrollTrigger plugin
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Hero section animations
+    const heroTimeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
+    
+    heroTimeline.fromTo('h1', 
+        { opacity: 0, y: 50 },
+        { duration: 1, opacity: 1, y: 0 }
+    )
+    .fromTo('p.border-l-2',
+        { opacity: 0, x: -30 },
+        { duration: 0.8, opacity: 1, x: 0, ease: 'power2.out' },
+    '-=0.6')
+    .fromTo('.hero-cta button',
+        { opacity: 0, y: 20 },
+        { duration: 0.8, opacity: 1, y: 0, stagger: 0.2, ease: 'back.out' },
+    '-=0.4');
+
+    // Navbar animation
+    gsap.from('nav', {
+        duration: 0.6,
+        y: -80,
+        opacity: 0,
+        ease: 'power2.out'
+    });
+
+    // Scroll indicator animation
+    const scrollIndicator = document.querySelector('.absolute.bottom-10');
+    if (scrollIndicator) {
+        gsap.to('.w-\\[1px\\].h-12', {
+            duration: 1.5,
+            yoyo: true,
+            repeat: -1,
+            y: 10,
+            opacity: 0.5,
+            ease: 'sine.inOut'
+        });
+    }
+
+    // Button interactions
+    document.querySelectorAll('button').forEach((btn) => {
+        btn.addEventListener('click', function(e) {
+            // Ripple effect
+            const ripple = document.createElement('div');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                background: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                left: ${x}px;
+                top: ${y}px;
+                pointer-events: none;
+            `;
+
+            this.style.position = 'relative';
+            this.appendChild(ripple);
+
+            gsap.to(ripple, {
+                duration: 0.6,
+                scale: 2,
+                opacity: 0,
+                onComplete: () => ripple.remove(),
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Background video parallax effect
+    gsap.to('.absolute.inset-0.z-0 video', {
+        scrollTrigger: {
+            trigger: 'main',
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1
+        },
+        y: 100,
+        ease: 'none'
+    });
+
+    // Navigation link hover animations
+    document.querySelectorAll('nav a').forEach((link) => {
+        link.addEventListener('mouseenter', function() {
+            gsap.to(this, {
+                duration: 0.3,
+                color: '#b0cfac',
+                ease: 'power2.out'
+            });
+        });
+        
+        link.addEventListener('mouseleave', function() {
+            gsap.to(this, {
+                duration: 0.3,
+                color: 'rgba(255, 255, 255, 0.7)',
+                ease: 'power2.out'
+            });
+        });
+    });
+
+    // Icon animations
+    document.querySelectorAll('[data-icon]').forEach((icon) => {
+        icon.addEventListener('mouseenter', function() {
+            gsap.to(this, {
+                duration: 0.4,
+                scale: 1.2,
+                rotation: 10,
+                ease: 'back.out'
+            });
+        });
+        
+        icon.addEventListener('mouseleave', function() {
+            gsap.to(this, {
+                duration: 0.4,
+                scale: 1,
+                rotation: 0,
+                ease: 'back.out'
+            });
+        });
+    });
+</script>
+</body></html>
